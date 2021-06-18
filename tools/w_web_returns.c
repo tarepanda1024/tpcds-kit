@@ -168,9 +168,10 @@ pr_w_web_returns(void *row)
 		r = row;
 	
 	print_start(WEB_RETURNS);
-	print_key(WR_RETURNED_DATE_SK, r->wr_returned_date_sk, 1);
+    print_key(WR_ITEM_SK, r->wr_item_sk, 1);
+    print_key(WR_ORDER_NUMBER, r->wr_order_number, 1);
+    print_key(WR_RETURNED_DATE_SK, r->wr_returned_date_sk, 1);
 	print_key(WR_RETURNED_TIME_SK, r->wr_returned_time_sk, 1);
-	print_key(WR_ITEM_SK, r->wr_item_sk, 1);
 	print_key(WR_REFUNDED_CUSTOMER_SK, r->wr_refunded_customer_sk, 1);
 	print_key(WR_REFUNDED_CDEMO_SK, r->wr_refunded_cdemo_sk, 1);
 	print_key(WR_REFUNDED_HDEMO_SK, r->wr_refunded_hdemo_sk, 1);
@@ -181,7 +182,6 @@ pr_w_web_returns(void *row)
 	print_key(WR_RETURNING_ADDR_SK, r->wr_returning_addr_sk, 1);
 	print_key(WR_WEB_PAGE_SK, r->wr_web_page_sk, 1);
 	print_key(WR_REASON_SK, r->wr_reason_sk, 1);
-	print_key(WR_ORDER_NUMBER, r->wr_order_number, 1);
 	print_integer(WR_PRICING_QUANTITY, r->wr_pricing.quantity, 1);
 	print_decimal(WR_PRICING_NET_PAID, &r->wr_pricing.net_paid, 1);
 	print_decimal(WR_PRICING_EXT_TAX, &r->wr_pricing.ext_tax, 1);

@@ -37,9 +37,11 @@ create table dbgen_version
 (
     dv_version                varchar(16)                   ,
     dv_create_date            date                          ,
-    dv_create_time            time                          ,
+    dv_create_time            datetime                          ,
     dv_cmdline_args           varchar(200)                  
-);
+)UNIQUE KEY(dv_version)
+DISTRIBUTED BY HASH(dv_version) BUCKETS 10
+PROPERTIES("replication_num" = "3");
 
 create table customer_address
 (
@@ -55,9 +57,10 @@ create table customer_address
     ca_zip                    char(10)                      ,
     ca_country                varchar(20)                   ,
     ca_gmt_offset             decimal(5,2)                  ,
-    ca_location_type          char(20)                      ,
-    primary key (ca_address_sk)
-);
+    ca_location_type          char(20)
+)UNIQUE KEY(ca_address_sk)
+DISTRIBUTED BY HASH(ca_address_sk) BUCKETS 10
+PROPERTIES("replication_num" = "3");
 
 create table customer_demographics
 (
@@ -69,9 +72,10 @@ create table customer_demographics
     cd_credit_rating          char(10)                      ,
     cd_dep_count              integer                       ,
     cd_dep_employed_count     integer                       ,
-    cd_dep_college_count      integer                       ,
-    primary key (cd_demo_sk)
-);
+    cd_dep_college_count      integer
+)UNIQUE KEY(cd_demo_sk)
+DISTRIBUTED BY HASH(cd_demo_sk) BUCKETS 10
+PROPERTIES("replication_num" = "3");
 
 create table date_dim
 (
@@ -102,9 +106,10 @@ create table date_dim
     d_current_week            char(1)                       ,
     d_current_month           char(1)                       ,
     d_current_quarter         char(1)                       ,
-    d_current_year            char(1)                       ,
-    primary key (d_date_sk)
-);
+    d_current_year            char(1)
+)UNIQUE KEY(d_date_sk)
+DISTRIBUTED BY HASH(d_date_sk) BUCKETS 10
+PROPERTIES("replication_num" = "3");
 
 create table warehouse
 (
@@ -121,9 +126,10 @@ create table warehouse
     w_state                   char(2)                       ,
     w_zip                     char(10)                      ,
     w_country                 varchar(20)                   ,
-    w_gmt_offset              decimal(5,2)                  ,
-    primary key (w_warehouse_sk)
-);
+    w_gmt_offset              decimal(5,2)
+)UNIQUE KEY(w_warehouse_sk)
+DISTRIBUTED BY HASH(w_warehouse_sk) BUCKETS 10
+PROPERTIES("replication_num" = "3");
 
 create table ship_mode
 (
@@ -132,9 +138,10 @@ create table ship_mode
     sm_type                   char(30)                      ,
     sm_code                   char(10)                      ,
     sm_carrier                char(20)                      ,
-    sm_contract               char(20)                      ,
-    primary key (sm_ship_mode_sk)
-);
+    sm_contract               char(20)
+)UNIQUE KEY(sm_ship_mode_sk)
+DISTRIBUTED BY HASH(sm_ship_mode_sk) BUCKETS 10
+PROPERTIES("replication_num" = "3");
 
 create table time_dim
 (
@@ -147,25 +154,28 @@ create table time_dim
     t_am_pm                   char(2)                       ,
     t_shift                   char(20)                      ,
     t_sub_shift               char(20)                      ,
-    t_meal_time               char(20)                      ,
-    primary key (t_time_sk)
-);
+    t_meal_time               char(20)
+)UNIQUE KEY(t_time_sk)
+DISTRIBUTED BY HASH(t_time_sk) BUCKETS 10
+PROPERTIES("replication_num" = "3");
 
 create table reason
 (
     r_reason_sk               integer               not null,
     r_reason_id               char(16)              not null,
-    r_reason_desc             char(100)                     ,
-    primary key (r_reason_sk)
-);
+    r_reason_desc             char(100)
+)UNIQUE KEY(r_reason_sk)
+DISTRIBUTED BY HASH(r_reason_sk) BUCKETS 10
+PROPERTIES("replication_num" = "3");
 
 create table income_band
 (
     ib_income_band_sk         integer               not null,
     ib_lower_bound            integer                       ,
-    ib_upper_bound            integer                       ,
-    primary key (ib_income_band_sk)
-);
+    ib_upper_bound            integer
+)UNIQUE KEY(ib_income_band_sk)
+DISTRIBUTED BY HASH(ib_income_band_sk) BUCKETS 10
+PROPERTIES("replication_num" = "3");
 
 create table item
 (
@@ -190,9 +200,10 @@ create table item
     i_units                   char(10)                      ,
     i_container               char(10)                      ,
     i_manager_id              integer                       ,
-    i_product_name            char(50)                      ,
-    primary key (i_item_sk)
-);
+    i_product_name            char(50)
+)UNIQUE KEY(i_item_sk)
+DISTRIBUTED BY HASH(i_item_sk) BUCKETS 10
+PROPERTIES("replication_num" = "3");
 
 create table store
 (
@@ -224,9 +235,10 @@ create table store
     s_zip                     char(10)                      ,
     s_country                 varchar(20)                   ,
     s_gmt_offset              decimal(5,2)                  ,
-    s_tax_precentage          decimal(5,2)                  ,
-    primary key (s_store_sk)
-);
+    s_tax_precentage          decimal(5,2)
+)UNIQUE KEY(s_store_sk)
+DISTRIBUTED BY HASH(s_store_sk) BUCKETS 10
+PROPERTIES("replication_num" = "3");
 
 create table call_center
 (
@@ -260,9 +272,10 @@ create table call_center
     cc_zip                    char(10)                      ,
     cc_country                varchar(20)                   ,
     cc_gmt_offset             decimal(5,2)                  ,
-    cc_tax_percentage         decimal(5,2)                  ,
-    primary key (cc_call_center_sk)
-);
+    cc_tax_percentage         decimal(5,2)
+)UNIQUE KEY(cc_call_center_sk)
+DISTRIBUTED BY HASH(cc_call_center_sk) BUCKETS 10
+PROPERTIES("replication_num" = "3");
 
 create table customer
 (
@@ -283,9 +296,10 @@ create table customer
     c_birth_country           varchar(20)                   ,
     c_login                   char(13)                      ,
     c_email_address           char(50)                      ,
-    c_last_review_date_sk     integer                       ,
-    primary key (c_customer_sk)
-);
+    c_last_review_date_sk     integer
+)UNIQUE KEY(c_customer_sk)
+DISTRIBUTED BY HASH(c_customer_sk) BUCKETS 10
+PROPERTIES("replication_num" = "3");
 
 create table web_site
 (
@@ -314,22 +328,23 @@ create table web_site
     web_zip                   char(10)                      ,
     web_country               varchar(20)                   ,
     web_gmt_offset            decimal(5,2)                  ,
-    web_tax_percentage        decimal(5,2)                  ,
-    primary key (web_site_sk)
-);
+    web_tax_percentage        decimal(5,2)
+)UNIQUE KEY(web_site_sk)
+DISTRIBUTED BY HASH(web_site_sk) BUCKETS 10
+PROPERTIES("replication_num" = "3");
 
 create table store_returns
 (
+    sr_item_sk                integer               not null,
+    sr_ticket_number          integer               not null,
     sr_returned_date_sk       integer                       ,
     sr_return_time_sk         integer                       ,
-    sr_item_sk                integer               not null,
     sr_customer_sk            integer                       ,
     sr_cdemo_sk               integer                       ,
     sr_hdemo_sk               integer                       ,
     sr_addr_sk                integer                       ,
     sr_store_sk               integer                       ,
     sr_reason_sk              integer                       ,
-    sr_ticket_number          integer               not null,
     sr_return_quantity        integer                       ,
     sr_return_amt             decimal(7,2)                  ,
     sr_return_tax             decimal(7,2)                  ,
@@ -339,9 +354,10 @@ create table store_returns
     sr_refunded_cash          decimal(7,2)                  ,
     sr_reversed_charge        decimal(7,2)                  ,
     sr_store_credit           decimal(7,2)                  ,
-    sr_net_loss               decimal(7,2)                  ,
-    primary key (sr_item_sk, sr_ticket_number)
-);
+    sr_net_loss               decimal(7,2)
+)UNIQUE KEY(sr_item_sk, sr_ticket_number)
+DISTRIBUTED BY HASH(sr_item_sk, sr_ticket_number) BUCKETS 10
+PROPERTIES("replication_num" = "3");
 
 create table household_demographics
 (
@@ -349,9 +365,10 @@ create table household_demographics
     hd_income_band_sk         integer                       ,
     hd_buy_potential          char(15)                      ,
     hd_dep_count              integer                       ,
-    hd_vehicle_count          integer                       ,
-    primary key (hd_demo_sk)
-);
+    hd_vehicle_count          integer
+)UNIQUE KEY(hd_demo_sk)
+DISTRIBUTED BY HASH(hd_demo_sk) BUCKETS 10
+PROPERTIES("replication_num" = "3");
 
 create table web_page
 (
@@ -368,9 +385,10 @@ create table web_page
     wp_char_count             integer                       ,
     wp_link_count             integer                       ,
     wp_image_count            integer                       ,
-    wp_max_ad_count           integer                       ,
-    primary key (wp_web_page_sk)
-);
+    wp_max_ad_count           integer
+)UNIQUE KEY(wp_web_page_sk)
+DISTRIBUTED BY HASH(wp_web_page_sk) BUCKETS 10
+PROPERTIES("replication_num" = "3");
 
 create table promotion
 (
@@ -392,9 +410,10 @@ create table promotion
     p_channel_demo            char(1)                       ,
     p_channel_details         varchar(100)                  ,
     p_purpose                 char(15)                      ,
-    p_discount_active         char(1)                       ,
-    primary key (p_promo_sk)
-);
+    p_discount_active         char(1)
+)UNIQUE KEY(p_promo_sk)
+DISTRIBUTED BY HASH(p_promo_sk) BUCKETS 10
+PROPERTIES("replication_num" = "3");
 
 create table catalog_page
 (
@@ -406,24 +425,27 @@ create table catalog_page
     cp_catalog_number         integer                       ,
     cp_catalog_page_number    integer                       ,
     cp_description            varchar(100)                  ,
-    cp_type                   varchar(100)                  ,
-    primary key (cp_catalog_page_sk)
-);
+    cp_type                   varchar(100)
+)UNIQUE KEY(cp_catalog_page_sk)
+DISTRIBUTED BY HASH(cp_catalog_page_sk) BUCKETS 10
+PROPERTIES("replication_num" = "3");
 
 create table inventory
 (
     inv_date_sk               integer               not null,
     inv_item_sk               integer               not null,
     inv_warehouse_sk          integer               not null,
-    inv_quantity_on_hand      integer                       ,
-    primary key (inv_date_sk, inv_item_sk, inv_warehouse_sk)
-);
+    inv_quantity_on_hand      integer
+)UNIQUE KEY(inv_date_sk, inv_item_sk, inv_warehouse_sk)
+DISTRIBUTED BY HASH(inv_date_sk, inv_item_sk, inv_warehouse_sk) BUCKETS 10
+PROPERTIES("replication_num" = "3");
 
 create table catalog_returns
 (
+    cr_item_sk                integer               not null,
+    cr_order_number           integer               not null,
     cr_returned_date_sk       integer                       ,
     cr_returned_time_sk       integer                       ,
-    cr_item_sk                integer               not null,
     cr_refunded_customer_sk   integer                       ,
     cr_refunded_cdemo_sk      integer                       ,
     cr_refunded_hdemo_sk      integer                       ,
@@ -437,7 +459,6 @@ create table catalog_returns
     cr_ship_mode_sk           integer                       ,
     cr_warehouse_sk           integer                       ,
     cr_reason_sk              integer                       ,
-    cr_order_number           integer               not null,
     cr_return_quantity        integer                       ,
     cr_return_amount          decimal(7,2)                  ,
     cr_return_tax             decimal(7,2)                  ,
@@ -447,15 +468,17 @@ create table catalog_returns
     cr_refunded_cash          decimal(7,2)                  ,
     cr_reversed_charge        decimal(7,2)                  ,
     cr_store_credit           decimal(7,2)                  ,
-    cr_net_loss               decimal(7,2)                  ,
-    primary key (cr_item_sk, cr_order_number)
-);
+    cr_net_loss               decimal(7,2)
+)UNIQUE KEY(cr_item_sk, cr_order_number)
+DISTRIBUTED BY HASH(cr_item_sk, cr_order_number) BUCKETS 10
+PROPERTIES("replication_num" = "3");
 
 create table web_returns
 (
+    wr_item_sk                integer               not null,
+    wr_order_number           integer               not null,
     wr_returned_date_sk       integer                       ,
     wr_returned_time_sk       integer                       ,
-    wr_item_sk                integer               not null,
     wr_refunded_customer_sk   integer                       ,
     wr_refunded_cdemo_sk      integer                       ,
     wr_refunded_hdemo_sk      integer                       ,
@@ -466,7 +489,6 @@ create table web_returns
     wr_returning_addr_sk      integer                       ,
     wr_web_page_sk            integer                       ,
     wr_reason_sk              integer                       ,
-    wr_order_number           integer               not null,
     wr_return_quantity        integer                       ,
     wr_return_amt             decimal(7,2)                  ,
     wr_return_tax             decimal(7,2)                  ,
@@ -476,16 +498,18 @@ create table web_returns
     wr_refunded_cash          decimal(7,2)                  ,
     wr_reversed_charge        decimal(7,2)                  ,
     wr_account_credit         decimal(7,2)                  ,
-    wr_net_loss               decimal(7,2)                  ,
-    primary key (wr_item_sk, wr_order_number)
-);
+    wr_net_loss               decimal(7,2)
+)UNIQUE KEY(wr_item_sk, wr_order_number)
+DISTRIBUTED BY HASH(wr_item_sk, wr_order_number) BUCKETS 10
+PROPERTIES("replication_num" = "3");
 
 create table web_sales
 (
+    ws_item_sk                integer               not null,
+    ws_order_number           integer               not null,
     ws_sold_date_sk           integer                       ,
     ws_sold_time_sk           integer                       ,
     ws_ship_date_sk           integer                       ,
-    ws_item_sk                integer               not null,
     ws_bill_customer_sk       integer                       ,
     ws_bill_cdemo_sk          integer                       ,
     ws_bill_hdemo_sk          integer                       ,
@@ -499,7 +523,6 @@ create table web_sales
     ws_ship_mode_sk           integer                       ,
     ws_warehouse_sk           integer                       ,
     ws_promo_sk               integer                       ,
-    ws_order_number           integer               not null,
     ws_quantity               integer                       ,
     ws_wholesale_cost         decimal(7,2)                  ,
     ws_list_price             decimal(7,2)                  ,
@@ -515,9 +538,10 @@ create table web_sales
     ws_net_paid_inc_tax       decimal(7,2)                  ,
     ws_net_paid_inc_ship      decimal(7,2)                  ,
     ws_net_paid_inc_ship_tax  decimal(7,2)                  ,
-    ws_net_profit             decimal(7,2)                  ,
-    primary key (ws_item_sk, ws_order_number)
-);
+    ws_net_profit             decimal(7,2)
+)UNIQUE KEY(ws_item_sk, ws_order_number)
+DISTRIBUTED BY HASH(ws_item_sk, ws_order_number) BUCKETS 10
+PROPERTIES("replication_num" = "3");
 
 create table catalog_sales
 (
@@ -554,9 +578,10 @@ create table catalog_sales
     cs_net_paid_inc_tax       decimal(7,2)                  ,
     cs_net_paid_inc_ship      decimal(7,2)                  ,
     cs_net_paid_inc_ship_tax  decimal(7,2)                  ,
-    cs_net_profit             decimal(7,2)                  ,
-    primary key (cs_item_sk, cs_order_number)
-);
+    cs_net_profit             decimal(7,2)
+)UNIQUE KEY(cs_item_sk, cs_order_number)
+DISTRIBUTED BY HASH(cs_item_sk, cs_order_number) BUCKETS 10
+PROPERTIES("replication_num" = "3");
 
 create table store_sales
 (
@@ -584,5 +609,7 @@ create table store_sales
     ss_net_paid_inc_tax       decimal(7,2)                  ,
     ss_net_profit             decimal(7,2)                  ,
     primary key (ss_item_sk, ss_ticket_number)
-);
+) UNIQUE KEY(ss_item_sk, ss_ticket_number)
+DISTRIBUTED BY HASH(ss_item_sk, ss_ticket_number) BUCKETS 10
+PROPERTIES("replication_num" = "3");
 

@@ -42,9 +42,10 @@
  * CATALOG_RETURNS table structure 
  */
 struct W_CATALOG_RETURNS_TBL {
-	ds_key_t	cr_returned_date_sk;
+    ds_key_t	cr_item_sk;
+    ds_key_t	cr_order_number;
+    ds_key_t	cr_returned_date_sk;
 	ds_key_t	cr_returned_time_sk;
-	ds_key_t	cr_item_sk;
 	ds_key_t	cr_refunded_customer_sk;
 	ds_key_t	cr_refunded_cdemo_sk;
 	ds_key_t	cr_refunded_hdemo_sk;
@@ -58,7 +59,6 @@ struct W_CATALOG_RETURNS_TBL {
 	ds_key_t	cr_ship_mode_sk;
 	ds_key_t	cr_warehouse_sk;
 	ds_key_t	cr_reason_sk;
-	ds_key_t	cr_order_number;
 	ds_pricing_t cr_pricing;
 	decimal_t	cr_fee;
 	decimal_t	cr_refunded_cash;

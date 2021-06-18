@@ -256,10 +256,11 @@ pr_w_web_sales(void *row)
 		r = row;
 	
 	print_start(WEB_SALES);
-	print_key(WS_SOLD_DATE_SK, r->ws_sold_date_sk, 1);
+    print_key(WS_ITEM_SK, r->ws_item_sk, 1);
+    print_key(WS_ORDER_NUMBER, r->ws_order_number, 1);
+    print_key(WS_SOLD_DATE_SK, r->ws_sold_date_sk, 1);
 	print_key(WS_SOLD_TIME_SK, r->ws_sold_time_sk, 1);
 	print_key(WS_SHIP_DATE_SK, r->ws_ship_date_sk, 1);
-	print_key(WS_ITEM_SK, r->ws_item_sk, 1);
 	print_key(WS_BILL_CUSTOMER_SK, r->ws_bill_customer_sk, 1);
 	print_key(WS_BILL_CDEMO_SK, r->ws_bill_cdemo_sk, 1);
 	print_key(WS_BILL_HDEMO_SK, r->ws_bill_hdemo_sk, 1);
@@ -273,7 +274,6 @@ pr_w_web_sales(void *row)
 	print_key(WS_SHIP_MODE_SK, r->ws_ship_mode_sk, 1);
 	print_key(WS_WAREHOUSE_SK, r->ws_warehouse_sk, 1);
 	print_key(WS_PROMO_SK, r->ws_promo_sk, 1);
-	print_key(WS_ORDER_NUMBER, r->ws_order_number, 1);
 	print_integer(WS_PRICING_QUANTITY, r->ws_pricing.quantity, 1);
 	print_decimal(WS_PRICING_WHOLESALE_COST, &r->ws_pricing.wholesale_cost, 1);
 	print_decimal(WS_PRICING_LIST_PRICE, &r->ws_pricing.list_price, 1);

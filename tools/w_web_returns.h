@@ -39,9 +39,10 @@
  * WEB_RETURNS table structure 
  */
 struct W_WEB_RETURNS_TBL {
-	ds_key_t	wr_returned_date_sk;
+    ds_key_t	wr_item_sk;
+    ds_key_t	wr_order_number;
+    ds_key_t	wr_returned_date_sk;
 	ds_key_t	wr_returned_time_sk;
-	ds_key_t	wr_item_sk;
 	ds_key_t	wr_refunded_customer_sk;
 	ds_key_t	wr_refunded_cdemo_sk;
 	ds_key_t	wr_refunded_hdemo_sk;
@@ -52,7 +53,6 @@ struct W_WEB_RETURNS_TBL {
 	ds_key_t	wr_returning_addr_sk;
 	ds_key_t	wr_web_page_sk;
 	ds_key_t	wr_reason_sk;
-	ds_key_t	wr_order_number;
 	ds_pricing_t	wr_pricing;
 };
 

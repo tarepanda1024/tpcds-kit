@@ -44,16 +44,16 @@
  * STORE_RETURNS table structure 
  */
 struct W_STORE_RETURNS_TBL {
-	ds_key_t	sr_returned_date_sk;
+    ds_key_t	sr_item_sk;
+    ds_key_t	sr_ticket_number;
+    ds_key_t	sr_returned_date_sk;
 	ds_key_t	sr_returned_time_sk;
-	ds_key_t	sr_item_sk;
 	ds_key_t	sr_customer_sk;
 	ds_key_t	sr_cdemo_sk;
 	ds_key_t	sr_hdemo_sk;
 	ds_key_t	sr_addr_sk;
 	ds_key_t	sr_store_sk;
 	ds_key_t	sr_reason_sk;
-	ds_key_t	sr_ticket_number;
 	ds_pricing_t	sr_pricing;
 };
 

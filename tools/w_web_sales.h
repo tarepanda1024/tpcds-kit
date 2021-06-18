@@ -37,10 +37,11 @@
  * WEB_SALES table structure 
  */
 struct W_WEB_SALES_TBL {
-	ds_key_t	ws_sold_date_sk;
+    ds_key_t	ws_item_sk;
+    ds_key_t	ws_order_number;
+    ds_key_t	ws_sold_date_sk;
 	ds_key_t	ws_sold_time_sk;
 	ds_key_t	ws_ship_date_sk;
-	ds_key_t	ws_item_sk;
 	ds_key_t	ws_bill_customer_sk;
 	ds_key_t	ws_bill_cdemo_sk;
 	ds_key_t	ws_bill_hdemo_sk;
@@ -54,7 +55,6 @@ struct W_WEB_SALES_TBL {
 	ds_key_t	ws_ship_mode_sk;
 	ds_key_t	ws_warehouse_sk;
 	ds_key_t	ws_promo_sk;
-	ds_key_t	ws_order_number;
 	ds_pricing_t	ws_pricing;
 };
 

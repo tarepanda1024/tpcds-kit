@@ -189,9 +189,10 @@ pr_w_catalog_returns(void *row)
 		r = row;
 
 	print_start(CATALOG_RETURNS);
-	print_key(CR_RETURNED_DATE_SK, r->cr_returned_date_sk, 1);
+    print_key(CR_ITEM_SK, r->cr_item_sk, 1);
+    print_key(CR_ORDER_NUMBER, r->cr_order_number, 1);
+    print_key(CR_RETURNED_DATE_SK, r->cr_returned_date_sk, 1);
 	print_key(CR_RETURNED_TIME_SK, r->cr_returned_time_sk, 1);
-	print_key(CR_ITEM_SK, r->cr_item_sk, 1);
 	print_key(CR_REFUNDED_CUSTOMER_SK, r->cr_refunded_customer_sk, 1);
 	print_key(CR_REFUNDED_CDEMO_SK, r->cr_refunded_cdemo_sk, 1);
 	print_key(CR_REFUNDED_HDEMO_SK, r->cr_refunded_hdemo_sk, 1);
@@ -205,7 +206,6 @@ pr_w_catalog_returns(void *row)
 	print_key(CR_SHIP_MODE_SK, r->cr_ship_mode_sk, 1);
 	print_key(CR_WAREHOUSE_SK, r->cr_warehouse_sk, 1);
 	print_key(CR_REASON_SK, r->cr_reason_sk, 1);
-	print_key(CR_ORDER_NUMBER, r->cr_order_number, 1);
 	print_integer(CR_PRICING_QUANTITY, r->cr_pricing.quantity, 1);
 	print_decimal(CR_PRICING_NET_PAID, &r->cr_pricing.net_paid, 1);
 	print_decimal(CR_PRICING_EXT_TAX, &r->cr_pricing.ext_tax, 1);

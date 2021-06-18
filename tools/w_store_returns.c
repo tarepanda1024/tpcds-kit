@@ -94,8 +94,8 @@ mk_w_store_returns (void * row, ds_key_t index)
 	* Some of the information in the return is taken from the original sale
 	* which has been regenerated
 	*/
-	r->sr_ticket_number = sale->ss_ticket_number;
-	r->sr_item_sk = sale->ss_sold_item_sk;
+    r->sr_item_sk = sale->ss_sold_item_sk;
+    r->sr_ticket_number = sale->ss_ticket_number;
 	memcpy((void *)&r->sr_pricing, (void *)&sale->ss_pricing, sizeof(ds_pricing_t));
 
 	/*
@@ -151,16 +151,16 @@ pr_w_store_returns(void *row)
 	else
 		r = row;
 	print_start(STORE_RETURNS);
-	print_key(SR_RETURNED_DATE_SK, r->sr_returned_date_sk, 1);
+    print_key(SR_ITEM_SK, r->sr_item_sk, 1);
+    print_key(SR_TICKET_NUMBER, r->sr_ticket_number, 1);
+    print_key(SR_RETURNED_DATE_SK, r->sr_returned_date_sk, 1);
 	print_key(SR_RETURNED_TIME_SK, r->sr_returned_time_sk, 1);
-	print_key(SR_ITEM_SK, r->sr_item_sk, 1);
 	print_key(SR_CUSTOMER_SK, r->sr_customer_sk, 1);
 	print_key(SR_CDEMO_SK, r->sr_cdemo_sk, 1);
 	print_key(SR_HDEMO_SK, r->sr_hdemo_sk, 1);
 	print_key(SR_ADDR_SK, r->sr_addr_sk, 1);
 	print_key(SR_STORE_SK, r->sr_store_sk, 1);
 	print_key(SR_REASON_SK, r->sr_reason_sk, 1);
-	print_key(SR_TICKET_NUMBER, r->sr_ticket_number, 1);
 	print_integer(SR_PRICING_QUANTITY, r->sr_pricing.quantity, 1);
 	print_decimal(SR_PRICING_NET_PAID, &r->sr_pricing.net_paid, 1);
 	print_decimal(SR_PRICING_EXT_TAX, &r->sr_pricing.ext_tax, 1);
