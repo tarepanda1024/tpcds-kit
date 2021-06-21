@@ -545,6 +545,8 @@ PROPERTIES("replication_num" = "3");
 
 create table catalog_sales
 (
+    cs_item_sk                integer               not null,
+    cs_order_number           integer               not null,
     cs_sold_date_sk           integer                       ,
     cs_sold_time_sk           integer                       ,
     cs_ship_date_sk           integer                       ,
@@ -560,9 +562,7 @@ create table catalog_sales
     cs_catalog_page_sk        integer                       ,
     cs_ship_mode_sk           integer                       ,
     cs_warehouse_sk           integer                       ,
-    cs_item_sk                integer               not null,
     cs_promo_sk               integer                       ,
-    cs_order_number           integer               not null,
     cs_quantity               integer                       ,
     cs_wholesale_cost         decimal(7,2)                  ,
     cs_list_price             decimal(7,2)                  ,
@@ -585,16 +585,16 @@ PROPERTIES("replication_num" = "3");
 
 create table store_sales
 (
+    ss_item_sk                integer               not null,
+    ss_ticket_number          integer               not null,
     ss_sold_date_sk           integer                       ,
     ss_sold_time_sk           integer                       ,
-    ss_item_sk                integer               not null,
     ss_customer_sk            integer                       ,
     ss_cdemo_sk               integer                       ,
     ss_hdemo_sk               integer                       ,
     ss_addr_sk                integer                       ,
     ss_store_sk               integer                       ,
     ss_promo_sk               integer                       ,
-    ss_ticket_number          integer               not null,
     ss_quantity               integer                       ,
     ss_wholesale_cost         decimal(7,2)                  ,
     ss_list_price             decimal(7,2)                  ,
@@ -607,8 +607,7 @@ create table store_sales
     ss_coupon_amt             decimal(7,2)                  ,
     ss_net_paid               decimal(7,2)                  ,
     ss_net_paid_inc_tax       decimal(7,2)                  ,
-    ss_net_profit             decimal(7,2)                  ,
-    primary key (ss_item_sk, ss_ticket_number)
+    ss_net_profit             decimal(7,2)
 ) UNIQUE KEY(ss_item_sk, ss_ticket_number)
 DISTRIBUTED BY HASH(ss_item_sk, ss_ticket_number) BUCKETS 10
 PROPERTIES("replication_num" = "3");

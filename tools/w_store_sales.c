@@ -177,16 +177,16 @@ pr_w_store_sales(void *row)
 		r = row;
 
 	print_start(STORE_SALES);
-	print_key(SS_SOLD_DATE_SK, r->ss_sold_date_sk, 1);
+    print_key(SS_SOLD_ITEM_SK, r->ss_sold_item_sk, 1);
+    print_key(SS_TICKET_NUMBER, r->ss_ticket_number, 1);
+    print_key(SS_SOLD_DATE_SK, r->ss_sold_date_sk, 1);
 	print_key(SS_SOLD_TIME_SK, r->ss_sold_time_sk, 1);
-	print_key(SS_SOLD_ITEM_SK, r->ss_sold_item_sk, 1);
 	print_key(SS_SOLD_CUSTOMER_SK, r->ss_sold_customer_sk, 1);
 	print_key(SS_SOLD_CDEMO_SK, r->ss_sold_cdemo_sk, 1);
 	print_key(SS_SOLD_HDEMO_SK, r->ss_sold_hdemo_sk, 1);
 	print_key(SS_SOLD_ADDR_SK, r->ss_sold_addr_sk, 1);
 	print_key(SS_SOLD_STORE_SK, r->ss_sold_store_sk, 1);
 	print_key(SS_SOLD_PROMO_SK, r->ss_sold_promo_sk, 1);
-	print_key(SS_TICKET_NUMBER, r->ss_ticket_number, 1);
 	print_integer(SS_PRICING_QUANTITY, r->ss_pricing.quantity, 1);
 	print_decimal(SS_PRICING_WHOLESALE_COST, &r->ss_pricing.wholesale_cost, 1);
 	print_decimal(SS_PRICING_LIST_PRICE, &r->ss_pricing.list_price, 1);

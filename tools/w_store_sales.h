@@ -44,16 +44,16 @@
  * STORE_SALES table structure 
  */
 struct W_STORE_SALES_TBL {
-	ds_key_t	ss_sold_date_sk;
+    ds_key_t	ss_sold_item_sk;
+    ds_key_t	ss_ticket_number;
+    ds_key_t	ss_sold_date_sk;
 	ds_key_t	ss_sold_time_sk;
-	ds_key_t	ss_sold_item_sk;
 	ds_key_t	ss_sold_customer_sk;
 	ds_key_t	ss_sold_cdemo_sk;
 	ds_key_t	ss_sold_hdemo_sk;
 	ds_key_t	ss_sold_addr_sk;
 	ds_key_t	ss_sold_store_sk;
 	ds_key_t	ss_sold_promo_sk;
-	ds_key_t	ss_ticket_number;
 	ds_pricing_t	ss_pricing;
 };
 

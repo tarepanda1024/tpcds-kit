@@ -299,7 +299,9 @@ pr_w_catalog_sales(void *row)
 		r = row;
 
 	print_start(CATALOG_SALES);
-	print_key(CS_SOLD_DATE_SK, r->cs_sold_date_sk, 1);
+    print_key(CS_SOLD_ITEM_SK, r->cs_sold_item_sk, 1);
+    print_key(CS_ORDER_NUMBER, r->cs_order_number, 1);
+    print_key(CS_SOLD_DATE_SK, r->cs_sold_date_sk, 1);
 	print_key(CS_SOLD_TIME_SK, r->cs_sold_time_sk, 1);
 	print_key(CS_SHIP_DATE_SK, r->cs_ship_date_sk, 1);
 	print_key(CS_BILL_CUSTOMER_SK, r->cs_bill_customer_sk, 1);
@@ -314,9 +316,7 @@ pr_w_catalog_sales(void *row)
 	print_key(CS_CATALOG_PAGE_SK, r->cs_catalog_page_sk, 1);
 	print_key(CS_SHIP_MODE_SK, r->cs_ship_mode_sk, 1);
 	print_key(CS_WAREHOUSE_SK, r->cs_warehouse_sk, 1);
-    print_key(CS_SOLD_ITEM_SK, r->cs_sold_item_sk, 1);
 	print_key(CS_PROMO_SK, r->cs_promo_sk, 1);
-	print_key(CS_ORDER_NUMBER, r->cs_order_number, 1);
 	print_integer(CS_PRICING_QUANTITY, r->cs_pricing.quantity, 1);
 	print_decimal(CS_PRICING_WHOLESALE_COST, &r->cs_pricing.wholesale_cost, 1);
 	print_decimal(CS_PRICING_LIST_PRICE, &r->cs_pricing.list_price, 1);

@@ -42,7 +42,9 @@
  * CATALOG_SALES table structure 
  */
 struct W_CATALOG_SALES_TBL {
-	ds_key_t	cs_sold_date_sk;
+    ds_key_t	cs_sold_item_sk;
+    ds_key_t	cs_order_number;
+    ds_key_t	cs_sold_date_sk;
 	ds_key_t	cs_sold_time_sk;
 	ds_key_t	cs_ship_date_sk;
 	ds_key_t	cs_bill_customer_sk;
@@ -57,9 +59,7 @@ struct W_CATALOG_SALES_TBL {
 	ds_key_t	cs_catalog_page_sk;
 	ds_key_t	cs_ship_mode_sk;
 	ds_key_t	cs_warehouse_sk;
-	ds_key_t	cs_sold_item_sk;
 	ds_key_t	cs_promo_sk;
-	ds_key_t	cs_order_number;
 	ds_pricing_t	cs_pricing;
 };
 
